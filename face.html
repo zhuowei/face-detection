@@ -65,8 +65,9 @@ body {
 
 var App = {
 	start: function(stream) {
-		App.video.addEventListener('canplay', function() {
-			App.video.removeEventListener('canplay');
+		var listener;
+		App.video.addEventListener('canplay', listener = function() {
+			App.video.removeEventListener('canplay', listener);
 			setTimeout(function() {
 				App.video.play();
 				App.canvas.style.display = 'inline';
