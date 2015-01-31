@@ -79,6 +79,7 @@ var App = {
 					width: w, 
 					height: h,
 				}];
+				App.mywidth = 50;
 			
 				App.drawToCanvas();
 			}, 500);
@@ -127,15 +128,12 @@ var App = {
 		//	ctx.drawImage(App.glasses, (App.comp[i].x - w / 2) * m, (App.comp[i].y - w / 2) * m, (App.comp[i].width + w) * m, (App.comp[i].height + w) * m);
 		//}
 		if (App.comp.length) {
-			var scale = 1 - (App.comp[0].width/100);
+			var scale = 2 - (App.comp[0].width/App.mywidth);
 			console.log(scale);
-			document.body.style.transform = "scale(" + scale + ")";
+			document.body.style.transform = scale < 1? "": "scale(" + scale + ")";
 		}
 	}
 };
-
-App.glasses = new Image();
-App.glasses.src = 'glasses.png';
 
 App.init = function() {
 	App.video = document.createElement('video');
@@ -165,7 +163,7 @@ App.init = function() {
 };
 
 App.init();
-
+window.onkeydown=function(){App.mywidth=App.comp[0].width}
 		</script>
 	</body>
 </html>
